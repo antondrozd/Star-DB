@@ -2,10 +2,16 @@ import React, { Component } from 'react';
 
 import ItemList from '../ItemList';
 import PersonDetails from '../PersonDetails';
+import Row from '../Row';
+import ErrorBoundry from '../ErrorBoundry';
+
+import SwapiService from '../../services/swapi-service';
 
 import './PeoplePage.css';
 
 class PeoplePage extends Component {
+  swapiService = new SwapiService();
+
   state = {
     selectedPerson: null
   };
@@ -15,15 +21,20 @@ class PeoplePage extends Component {
   };
 
   render() {
+    const itemList = (
+      <ItemList
+        onItemSelected={this.onPersonSelected}
+        getData={this.swapiService.getAllPeople}
+      />
+    );
+    const personDetails = (
+      <PersonDetails personId={this.state.selectedPerson} />
+    );
+
     return (
-      <div className="row">
-        <div className="col-md-4">
-          <ItemList onItemSelected={this.onPersonSelected} />
-        </div>
-        <div className="col-md-7 offset-md-1">
-          <PersonDetails personId={this.state.selectedPerson} />
-        </div>
-      </div>
+      <ErrorBoundry>
+        <Row left={itemList} right={personDetails} />
+      </ErrorBoundry>
     );
   }
 }

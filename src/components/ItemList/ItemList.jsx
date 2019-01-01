@@ -1,39 +1,27 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-import Spinner from '../Spinner';
+import withData from '../../hoc/withData';
+
+import SwapiService from '../../services/swapi-service';
 
 import './ItemList.css';
 
-export default class ItemList extends Component {
-  state = {
-    itemList: null
-  };
+const { getAllPeople } = new SwapiService();
 
-  componentDidMount() {
-    const { getData } = this.props;
+const ItemList = ({ data, onItemSelected }) => {
+  return (
+    <ul className="item-list list-group">
+      {data.map(({ id, name }) => (
+        <li
+          className="list-group-item"
+          key={id}
+          onClick={() => onItemSelected(id)}
+        >
+          {name}
+        </li>
+      ))}
+    </ul>
+  );
+};
 
-    getData().then(itemList => this.setState({ itemList }));
-  }
-
-  render() {
-    const { itemList } = this.state;
-
-    if (!itemList) {
-      return <Spinner />;
-    }
-
-    return (
-      <ul className="item-list list-group">
-        {itemList.map(({ id, name }) => (
-          <li
-            className="list-group-item"
-            key={id}
-            onClick={() => this.props.onItemSelected(id)}
-          >
-            {name}
-          </li>
-        ))}
-      </ul>
-    );
-  }
-}
+export default withData(ItemList, getAllPeople);

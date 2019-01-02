@@ -1,4 +1,4 @@
-import withData from '../../hoc/withData';
+import { withData } from '../../hoc';
 import ItemList from '../ItemList';
 
 import SwapiService from '../../services/swapi-service';

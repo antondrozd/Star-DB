@@ -4,7 +4,7 @@ import Spinner from '../components/Spinner';
 import ErrorIndicator from '../components/ErrorIndicator';
 
 const withData = (View, getData) => {
-  return class extends Component {
+  class WithData extends Component {
     state = {
       data: null,
       loading: true,
@@ -33,7 +33,13 @@ const withData = (View, getData) => {
         </React.Fragment>
       );
     }
-  };
+  }
+
+  WithData.displayName = `WithData(${View.displayName ||
+    View.name ||
+    'Component'})`;
+
+  return WithData;
 };
 
 export default withData;

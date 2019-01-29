@@ -5,7 +5,7 @@ import ErrorIndicator from '../components/ErrorIndicator';
 
 import { getDisplayName } from './helpers';
 
-const withData = (View, getData) => {
+const withData = View => {
   class WithData extends Component {
     state = {
       data: null,
@@ -14,7 +14,8 @@ const withData = (View, getData) => {
     };
 
     componentDidMount() {
-      getData()
+      this.props
+        .getData()
         .then(data => this.setState({ data, loading: false }))
         .catch(err => {
           console.error(err);

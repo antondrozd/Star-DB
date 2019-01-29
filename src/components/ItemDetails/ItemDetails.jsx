@@ -19,13 +19,13 @@ class ItemDetails extends Component {
       return { loading: true };
     });
 
-    const { itemId, getData, getImageUrl } = this.props;
+    const { itemId, getData } = this.props;
 
     if (!itemId) return;
 
     getData(itemId)
       .then(item =>
-        this.setState({ item, imageUrl: getImageUrl(itemId), loading: false })
+        this.setState({ item, imageUrl: item.imageUrl, loading: false })
       )
       .catch(err => {
         console.error(err);

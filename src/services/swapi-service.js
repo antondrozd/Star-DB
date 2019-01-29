@@ -26,10 +26,6 @@ export default class SwapiService {
     return this._transformPersonData(person);
   };
 
-  getPersonImageUrl = id => {
-    return `${this._imageBase}/characters/${id}.jpg`
-  }
-
   getAllPlanets = async () => {
     const res = await this.getResource('/planets/');
 
@@ -41,10 +37,6 @@ export default class SwapiService {
 
     return this._transformPlanetData(planet);
   };
-
-  getPlanetImageUrl = id => {
-    return `${this._imageBase}/planets/${id}.jpg`
-  }
 
   getAllStarships = async () => {
     const res = await this.getResource('/starships/');
@@ -58,10 +50,6 @@ export default class SwapiService {
     return this._transformStarshipData(starship);
   };
 
-  getStarshipImageUrl = id => {
-    return `${this._imageBase}/starships/${id}.jpg`
-  }
-
   _transformPlanetData = ({
     url,
     name,
@@ -69,8 +57,11 @@ export default class SwapiService {
     rotation_period,
     diameter
   }) => {
+    const id = this._extractId(url);
+
     return {
-      id: this._extractId(url),
+      id,
+      imageUrl: `${this._imageBase}/planets/${id}.jpg`,
       name,
       population,
       rotationPeriod: rotation_period,
@@ -89,8 +80,11 @@ export default class SwapiService {
     passengers,
     cargo_capacity
   }) => {
+    const id = this._extractId(url);
+
     return {
-      id: this._extractId(url),
+      id,
+      imageUrl: `${this._imageBase}/starships/${id}.jpg`,
       name,
       model,
       manufacturer,
@@ -103,8 +97,11 @@ export default class SwapiService {
   };
 
   _transformPersonData = ({ url, name, gender, birth_year, eye_color }) => {
+    const id = this._extractId(url);
+
     return {
-      id: this._extractId(url),
+      id,
+      imageUrl: `${this._imageBase}/characters/${id}.jpg`,
       name,
       gender,
       birthYear: birth_year,

@@ -13,10 +13,9 @@ const PlanetDetails = props => {
   );
 };
 
-const mapMethodsToProps = ({ getPlanet, getPlanetImageUrl }) => {
+const mapMethodsToProps = ({ getPlanet }) => {
   return {
-    getData: getPlanet,
-    getImageUrl: getPlanetImageUrl
+    getData: getPlanet
   };
 };
 

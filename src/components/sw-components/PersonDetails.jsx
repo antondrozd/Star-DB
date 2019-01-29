@@ -13,10 +13,9 @@ const PersonDetails = props => {
   );
 };
 
-const mapMethodsToProps = ({ getPerson, getPersonImageUrl }) => {
+const mapMethodsToProps = ({ getPerson }) => {
   return {
-    getData: getPerson,
-    getImageUrl: getPersonImageUrl
+    getData: getPerson
   };
 };
 

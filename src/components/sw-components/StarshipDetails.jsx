@@ -13,10 +13,9 @@ const StarshipDetails = props => {
   );
 };
 
-const mapMethodsToProps = ({ getStarship, getStarshipImageUrl }) => {
+const mapMethodsToProps = ({ getStarship }) => {
   return {
-    getData: getStarship,
-    getImageUrl: getStarshipImageUrl
+    getData: getStarship
   };
 };
 

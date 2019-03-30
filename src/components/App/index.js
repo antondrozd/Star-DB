@@ -1,1 +1,3 @@
-export { default } from './App';
+import App from './app';
+
+export default App;

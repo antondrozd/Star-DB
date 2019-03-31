@@ -16,14 +16,16 @@ export default class ItemList extends Component {
   }
 
   renderItems() {
-    return this.state.itemList.map(({ id, name }) => {
+    return this.state.itemList.map(item => {
+      const { id } = item;
+      
       return (
         <li
           className="list-group-item"
           key={id}
           onClick={() => this.props.onPersonSelected(id)}
         >
-          {name}
+          {this.props.children(item)}
         </li>
       );
     });

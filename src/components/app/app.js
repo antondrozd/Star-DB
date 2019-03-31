@@ -23,7 +23,9 @@ class App extends Component {
       <ItemList
         onPersonSelected={this.onPersonSelected}
         getData={this.swapiService.getAllPeople}
-      />
+      >
+        {item => `${item.name} (${item.birthYear})`}
+      </ItemList>
     );
 
     const personDetails = (

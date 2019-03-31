@@ -4,6 +4,7 @@ import Header from '../header';
 import RandomPlanet from '../random-planet';
 import ItemList from '../item-list';
 import PersonDetails from '../person-details';
+import Row from '../row';
 import SwapiService from '../../services/swapi-service';
 
 class App extends Component {
@@ -18,22 +19,23 @@ class App extends Component {
   };
 
   render() {
+    const itemList = (
+      <ItemList
+        onPersonSelected={this.onPersonSelected}
+        getData={this.swapiService.getAllPeople}
+      />
+    );
+
+    const personDetails = (
+      <PersonDetails personId={this.state.selectedPerson} />
+    );
+
     return (
       <div>
         <Header />
         <RandomPlanet />
 
-        <div className="row mb2">
-          <div className="col-md-6">
-            <ItemList
-              onPersonSelected={this.onPersonSelected}
-              getData={this.swapiService.getAllPeople}
-            />
-          </div>
-          <div className="col-md-6">
-            <PersonDetails personId={this.state.selectedPerson} />
-          </div>
-        </div>
+        <Row left={itemList} right={personDetails} />
       </div>
     );
   }

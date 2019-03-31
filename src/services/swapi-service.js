@@ -60,6 +60,7 @@ export default class SwapiService {
     const id = this._extractId(url);
 
     return {
+      id,
       imageUrl: `${this._imageBase}/planets/${id}.jpg`,
       name,
       population,
@@ -82,6 +83,7 @@ export default class SwapiService {
     const id = this._extractId(url);
 
     return {
+      id,
       imageUrl: `${this._imageBase}/starships/${id}.jpg`,
       name,
       model,
@@ -98,6 +100,7 @@ export default class SwapiService {
     const id = this._extractId(url);
 
     return {
+      id,
       imageUrl: `${this._imageBase}/characters/${id}.jpg`,
       name,
       gender,

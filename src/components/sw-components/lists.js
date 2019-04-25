@@ -1,11 +1,35 @@
 import ItemList from '../item-list'
-import withSwapiService from '../../hocs/withDataFetching'
-import SwapiService from '../../services/swapi-service'
+import { withSwapiService, withDataFetching } from '../../hocs'
 
-const { getAllPeople, getAllPlanets, getAllStarships } = new SwapiService()
+const mapPersonMethodsToProps = swapiService => {
+  return {
+    getData: swapiService.getAllPeople
+  }
+}
 
-const PersonList = withSwapiService(ItemList, getAllPeople)
-const PlanetsList = withSwapiService(ItemList, getAllPlanets)
-const StarshipsList = withSwapiService(ItemList, getAllStarships)
+const mapPlanetMethodsToProps = swapiService => {
+  return {
+    getData: swapiService.getAllPlanets
+  }
+}
+
+const mapStarshipMethodsToProps = swapiService => {
+  return {
+    getData: swapiService.getAllStarships
+  }
+}
+
+const PersonList = withSwapiService(
+  withDataFetching(ItemList),
+  mapPersonMethodsToProps
+)
+const PlanetsList = withSwapiService(
+  withDataFetching(ItemList),
+  mapPlanetMethodsToProps
+)
+const StarshipsList = withSwapiService(
+  withDataFetching(ItemList),
+  mapStarshipMethodsToProps
+)
 
 export { PersonList, PlanetsList, StarshipsList }

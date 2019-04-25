@@ -26,11 +26,7 @@ class App extends Component {
   }
 
   render() {
-    const personList = (
-      <PersonList onPersonSelected={this.onPersonSelected}>
-        {item => <span>{item.name}</span>}
-      </PersonList>
-    )
+    const personList = <PersonList onPersonSelected={this.onPersonSelected} />
 
     const personDetails = <PersonDetails itemId={this.state.selectedPerson} />
 

@@ -19,17 +19,14 @@ const mapStarshipMethodsToProps = swapiService => {
   }
 }
 
-const PersonList = withSwapiService(
-  withDataFetching(ItemList),
-  mapPersonMethodsToProps
+const PersonList = withSwapiService(mapPersonMethodsToProps)(
+  withDataFetching(ItemList)
 )
-const PlanetsList = withSwapiService(
-  withDataFetching(ItemList),
-  mapPlanetMethodsToProps
+const PlanetsList = withSwapiService(mapPlanetMethodsToProps)(
+  withDataFetching(ItemList)
 )
-const StarshipsList = withSwapiService(
-  withDataFetching(ItemList),
-  mapStarshipMethodsToProps
+const StarshipsList = withSwapiService(mapStarshipMethodsToProps)(
+  withDataFetching(ItemList)
 )
 
 export { PersonList, PlanetsList, StarshipsList }

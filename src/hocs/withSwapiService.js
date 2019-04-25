@@ -4,7 +4,7 @@ import { SwapiServiceConsumer } from '../contexts'
 
 import { getDisplayName } from './helpers'
 
-const withSwapiService = (WrappedComponent, mapMethodsToProps) => {
+const withSwapiService = mapMethodsToProps => WrappedComponent => {
   const WithSwapiService = props => {
     return (
       <SwapiServiceConsumer>

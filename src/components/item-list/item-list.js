@@ -10,7 +10,7 @@ function ItemList(props) {
       <li
         className="list-group-item"
         key={id}
-        onClick={() => props.onPersonSelected(id)}
+        onClick={() => props.onItemSelected(id)}
       >
         {name}
       </li>

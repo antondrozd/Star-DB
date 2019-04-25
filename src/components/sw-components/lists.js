@@ -1,5 +1,6 @@
 import ItemList from '../item-list'
 import { withSwapiService, withDataFetching } from '../../hocs'
+import { compose } from '../../hocs/helpers'
 
 const mapPersonMethodsToProps = swapiService => {
   return {
@@ -19,14 +20,19 @@ const mapStarshipMethodsToProps = swapiService => {
   }
 }
 
-const PersonList = withSwapiService(mapPersonMethodsToProps)(
-  withDataFetching(ItemList)
-)
-const PlanetsList = withSwapiService(mapPlanetMethodsToProps)(
-  withDataFetching(ItemList)
-)
-const StarshipsList = withSwapiService(mapStarshipMethodsToProps)(
-  withDataFetching(ItemList)
-)
+const PersonList = compose(
+  withSwapiService(mapPersonMethodsToProps),
+  withDataFetching
+)(ItemList)
+
+const PlanetsList = compose(
+  withSwapiService(mapPlanetMethodsToProps),
+  withDataFetching
+)(ItemList)
+
+const StarshipsList = compose(
+  withSwapiService(mapStarshipMethodsToProps),
+  withDataFetching
+)(ItemList)
 
 export { PersonList, PlanetsList, StarshipsList }

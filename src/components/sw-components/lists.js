@@ -1,5 +1,5 @@
 import ItemList from '../item-list'
-import withSwapiService from '../../hocs/withSwapiService'
+import withSwapiService from '../../hocs/withDataFetching'
 import SwapiService from '../../services/swapi-service'
 
 const { getAllPeople, getAllPlanets, getAllStarships } = new SwapiService()

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import Spinner from '../components/spinner'
 
-const withSwapiService = (View, getData) => {
+const withDataFetching = (View, getData) => {
   return class extends Component {
     state = {
       data: null
@@ -21,4 +21,4 @@ const withSwapiService = (View, getData) => {
   }
 }
 
-export default withSwapiService
+export default withDataFetching

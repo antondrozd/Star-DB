@@ -1,8 +1,11 @@
 import React, { Component } from 'react'
+
 import Spinner from '../components/spinner'
 
+import { getDisplayName } from './helpers'
+
 const withDataFetching = View => {
-  return class extends Component {
+  class WithDataFetching extends Component {
     state = {
       data: null
     }
@@ -19,6 +22,10 @@ const withDataFetching = View => {
       return <View {...this.props} data={data} />
     }
   }
+
+  WithDataFetching.displayName = `WithDataFetching(${getDisplayName(View)})`
+
+  return WithDataFetching
 }
 
 export default withDataFetching

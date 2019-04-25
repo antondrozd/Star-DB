@@ -2,8 +2,14 @@ import React, { Component } from 'react'
 
 import Header from '../header'
 import RandomPlanet from '../random-planet'
-import ItemList from '../item-list'
-import ItemDetails, { Record } from '../item-details'
+import {
+  PersonList,
+  PlanetsList,
+  StarshipsList,
+  PersonDetails,
+  PlanetDetails,
+  StarshipDetails
+} from '../sw-components'
 import Row from '../row'
 import ErrorBoundry from '../error-boundry/error-boundry'
 import SwapiService from '../../services/swapi-service'
@@ -20,41 +26,20 @@ class App extends Component {
   }
 
   render() {
-    const itemList = (
-      <ItemList
-        onPersonSelected={this.onPersonSelected}
-        getData={this.swapiService.getAllPeople}
-      >
-        {item => `${item.name} (${item.birthYear})`}
-      </ItemList>
+    const personList = (
+      <PersonList onPersonSelected={this.onPersonSelected}>
+        {item => <span>{item.name}</span>}
+      </PersonList>
     )
 
-    const personDetails = (
-      <ItemDetails
-        itemId={this.state.selectedPerson}
-        getData={this.swapiService.getPerson}
-      >
-        <Record field="gender" label="Gender" />
-        <Record field="birthYear" label="Birth Year" />
-        <Record field="eyeColor" label="Eye Color" />
-      </ItemDetails>
-    )
-
-    // const stapshipDetails = (
-    //   <ItemDetails itemId={5} getData={this.swapiService.getStarship}>
-    //     <Record field="model" label="Model" />
-    //     <Record field="length" label="Length" />
-    //     <Record field="costInCredits" label="Cost" />
-    //   </ItemDetails>
-    // )
+    const personDetails = <PersonDetails itemId={this.state.selectedPerson} />
 
     return (
       <ErrorBoundry>
         <div className="stardb-app">
           <Header />
           <RandomPlanet />
-
-          <Row left={itemList} right={personDetails} />
+          <Row left={personList} right={personDetails} />
         </div>
       </ErrorBoundry>
     )

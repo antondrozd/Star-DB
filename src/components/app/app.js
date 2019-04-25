@@ -11,7 +11,9 @@ class App extends Component {
       <ErrorBoundry>
         <div className="stardb-app">
           <Header />
-          <RandomPlanet />
+          <ErrorBoundry>
+            <RandomPlanet />
+          </ErrorBoundry>
           <PeoplePage />
           <PlanetsPage />
           <StarshipsPage />

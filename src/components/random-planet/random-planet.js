@@ -1,51 +1,51 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component, Fragment } from 'react'
 
-import SwapiService from '../../services/swapi-service';
-import Spinner from '../spinner';
-import ErrorIndicator from '../error-indicator';
+import SwapiService from '../../services/swapi-service'
+import Spinner from '../spinner'
+import ErrorIndicator from '../error-indicator'
 
-import './random-planet.css';
+import './random-planet.css'
 
 export default class RandomPlanet extends Component {
-  swapiService = new SwapiService();
+  swapiService = new SwapiService()
 
   state = {
     planet: {},
     isLoading: true,
     isError: false
-  };
+  }
 
   componentDidMount() {
-    this.update();
-    this.interval = setInterval(this.update, 2500);
+    this.update()
+    this.interval = setInterval(this.update, 2500)
   }
 
   componentWillUnmount() {
-    clearInterval(this.interval);
+    clearInterval(this.interval)
   }
 
   onPlanetLoaded = planet => {
-    this.setState({ planet, isLoading: false });
-  };
+    this.setState({ planet, isLoading: false })
+  }
 
   update = () => {
-    const id = Math.floor(Math.random() * 25) + 3;
+    const id = Math.floor(Math.random() * 17) + 2
 
     this.swapiService
       .getPlanet(id)
       .then(planet => {
-        this.onPlanetLoaded(planet);
+        this.onPlanetLoaded(planet)
       })
       .catch(error => {
-        console.error(error);
-        this.setState({ isError: true, isLoading: false });
-      });
+        console.error(error)
+        this.setState({ isError: true, isLoading: false })
+      })
   }
 
   renderPlanet() {
     const {
       planet: { imageUrl, name, population, rotationPeriod, diameter }
-    } = this.state;
+    } = this.state
 
     return (
       <Fragment>
@@ -68,12 +68,12 @@ export default class RandomPlanet extends Component {
           </ul>
         </div>
       </Fragment>
-    );
+    )
   }
 
   render() {
-    const { isLoading, isError } = this.state;
-    const hasData = !(isError || isLoading);
+    const { isLoading, isError } = this.state
+    const hasData = !(isError || isLoading)
 
     return (
       <div className="random-planet jumbotron rounded">
@@ -81,6 +81,6 @@ export default class RandomPlanet extends Component {
         {isLoading && <Spinner />}
         {isError && <ErrorIndicator />}
       </div>
-    );
+    )
   }
 }
